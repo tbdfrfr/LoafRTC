@@ -255,7 +255,7 @@ fn spawn_send_thread(
   })
 }
 
-fn push_drop_oldest<T>(tx: &Sender<T>, rx_for_drop: &Receiver<T>, value: T) {
+fn push_drop_oldest<T: Copy>(tx: &Sender<T>, rx_for_drop: &Receiver<T>, value: T) {
   if tx.try_send(value).is_ok() {
     return;
   }

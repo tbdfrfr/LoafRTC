@@ -127,7 +127,7 @@ pub fn set_stats_callback(callback: JsFunction) -> Result<()> {
     .create_threadsafe_function(64, |ctx: ThreadSafeCallContext<NativeStats>| {
       let env = ctx.env;
       let stats = ctx.value;
-      let obj = env.create_object()?;
+      let mut obj = env.create_object()?;
       obj.set_named_property("fps_sent", env.create_double(stats.fps_sent)?)?;
       obj.set_named_property("bitrate_mbps", env.create_double(stats.bitrate_mbps)?)?;
       obj.set_named_property("encode_ms", env.create_double(stats.encode_ms)?)?;
