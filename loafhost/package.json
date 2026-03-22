@@ -1,0 +1,29 @@
+{
+  "name": "loafhost",
+  "version": "1.0.0",
+  "description": "LoafRTC Windows host app",
+  "main": "src/main.js",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron .",
+    "build:native": "bash ./scripts/build-native.sh",
+    "build:bridge": "mkdir -p resources && GOOS=windows GOARCH=amd64 go build -o resources/input-bridge.exe ./input-bridge",
+    "package": "npm run build:native && npm run build:bridge && electron-builder --config electron-builder.yml --win nsis",
+    "check": "node --check src/main.js && node --check src/preload.js && node --check src/renderer/app.js"
+  },
+  "dependencies": {
+    "electron-log": "^5.3.0",
+    "electron-updater": "^6.3.9",
+    "node-datachannel": "^0.28.0",
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "@napi-rs/cli": "^2.18.4",
+    "electron": "^34.3.0",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "extends": null
+  }
+}

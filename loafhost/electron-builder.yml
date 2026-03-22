@@ -1,0 +1,30 @@
+appId: com.loafrtc.host
+productName: LoafHost
+directories:
+  output: dist
+  buildResources: build
+files:
+  - src/**/*
+  - native/index.node
+  - package.json
+extraResources:
+  - from: resources/input-bridge.exe
+    to: input-bridge.exe
+publish:
+  provider: github
+  owner: tbdfrfr
+  repo: ToastRTC
+win:
+  target:
+    - target: nsis
+      arch:
+        - x64
+  artifactName: LoafHost-${version}-Setup.${ext}
+nsis:
+  oneClick: true
+  allowToChangeInstallationDirectory: false
+  perMachine: false
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  shortcutName: LoafHost
+  deleteAppDataOnUninstall: false

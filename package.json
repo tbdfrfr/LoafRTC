@@ -1,0 +1,14 @@
+{
+  "name": "loafrtc-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "server",
+    "loafhost"
+  ],
+  "scripts": {
+    "install:all": "npm install --workspaces",
+    "check:server": "cd server && npm run check",
+    "check:host": "cd loafhost && npm run check"
+  }
+}

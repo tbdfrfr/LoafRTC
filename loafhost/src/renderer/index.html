@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LoafHost</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <div>
+          <h1>LoafHost</h1>
+          <p>Windows host streamer</p>
+        </div>
+        <button id="open-signaling" type="button">Open Server</button>
+      </header>
+
+      <section class="room-card">
+        <div class="room-heading">Room Code</div>
+        <div id="room-code" class="room-code">------</div>
+        <div class="room-actions">
+          <button id="copy-code" type="button">Copy</button>
+          <button id="disconnect" type="button" class="danger">Disconnect</button>
+        </div>
+      </section>
+
+      <section class="status-card">
+        <div>Status</div>
+        <div id="status" class="status-pill">Disconnected</div>
+        <div id="peer-count" class="peer-count">Viewers: 0</div>
+      </section>
+
+      <section class="settings-grid">
+        <label>
+          Resolution
+          <select id="setting-resolution">
+            <option value="720p">720p</option>
+            <option value="1080p" selected>1080p</option>
+            <option value="1440p">1440p</option>
+          </select>
+        </label>
+
+        <label>
+          FPS
+          <select id="setting-fps">
+            <option value="30">30</option>
+            <option value="60" selected>60</option>
+            <option value="120">120</option>
+          </select>
+        </label>
+
+        <label>
+          Bitrate (Mbps)
+          <input id="setting-bitrate" type="number" min="5" max="50" value="20" />
+        </label>
+
+        <label>
+          Codec
+          <select id="setting-codec">
+            <option value="auto" selected>Auto</option>
+            <option value="h264">H.264</option>
+            <option value="av1">AV1</option>
+          </select>
+        </label>
+
+        <label>
+          Audio
+          <select id="setting-audio" disabled>
+            <option value="off" selected>Disabled (Video First)</option>
+          </select>
+        </label>
+
+        <button id="request-keyframe" type="button" class="wide">Request Keyframe</button>
+      </section>
+
+      <section class="stats-grid">
+        <div class="stat"><span>FPS Sent</span><strong id="stat-fps">0</strong></div>
+        <div class="stat"><span>Bitrate</span><strong id="stat-bitrate">0.00 Mbps</strong></div>
+        <div class="stat"><span>Encode Time</span><strong id="stat-encode">0.0 ms</strong></div>
+        <div class="stat"><span>RTT</span><strong id="stat-rtt">0 ms</strong></div>
+      </section>
+
+      <p id="message" class="message"></p>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
