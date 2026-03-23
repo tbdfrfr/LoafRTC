@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "@napi-rs/cli": "^2.18.4",
-    "electron": "^34.3.0",
+    "electron": "34.3.0",
     "electron-builder": "^25.1.8"
   },
   "build": {
