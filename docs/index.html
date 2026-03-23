@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LoafRTC Viewer</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script>
+      window.LOAFRTC_SIGNALING_URL = 'wss://165.245.160.36:3000/ws';
+      // Example for GitHub Pages frontend + DigitalOcean backend:
+      // window.LOAFRTC_SIGNALING_URL = 'wss://signal.your-domain.com/ws';
+    </script>
+  </head>
+  <body>
+    <div id="app" class="app">
+      <section id="landing" class="panel panel-active">
+        <h1 class="brand">LoafRTC</h1>
+        <p class="subtitle">Enter your 6-character host code</p>
+        <form id="connect-form" class="connect-form" autocomplete="off">
+          <input
+            id="room-code"
+            name="roomCode"
+            type="text"
+            inputmode="latin"
+            maxlength="6"
+            spellcheck="false"
+            placeholder="ABC123"
+            aria-label="Room code"
+            required
+          />
+          <button id="connect-button" type="submit">Connect</button>
+        </form>
+        <p id="connect-status" class="status">Idle</p>
+      </section>
+
+      <section id="stream" class="panel">
+        <canvas id="stream-canvas" aria-label="Game stream canvas"></canvas>
+
+        <div id="hud" class="hud hud-visible">
+          <span id="hud-latency">Latency: -- ms</span>
+          <span id="hud-fps">FPS: --</span>
+          <span id="hud-bitrate">Bitrate: -- Mbps</span>
+          <span id="hud-connection">Connection: --</span>
+          <button id="fullscreen-button" type="button">Fullscreen</button>
+          <button id="disconnect-button" type="button">Disconnect</button>
+        </div>
+
+        <div id="spinner" class="spinner spinner-hidden" aria-hidden="true"></div>
+      </section>
+    </div>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
