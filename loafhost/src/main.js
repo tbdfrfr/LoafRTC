@@ -34,7 +34,7 @@ const DEFAULT_SETTINGS = {
   audioEnabled: false,
 };
 
-const SIGNALING_URL = process.env.SIGNALING_URL || 'ws://165.245.160.36/ws';
+const SIGNALING_URL = 'ws://165.245.160.36/ws';
 const INPUT_PIPE_PATH = '\\\\.\\pipe\\loafrtc-input';
 
 const state = {
