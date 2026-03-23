@@ -255,13 +255,17 @@ fn spawn_send_thread(
   })
 }
 
-fn push_drop_oldest<T: Copy>(tx: &Sender<T>, rx_for_drop: &Receiver<T>, value: T) {
-  if tx.try_send(value).is_ok() {
-    return;
-  }
+fn push_drop_oldest<T>(tx: &Sender<T>, rx_for_drop: &Receiver<T>, value: T) {
+  use crossbeam_channel::TrySendError;
 
-  let _ = rx_for_drop.try_recv();
-  let _ = tx.try_send(value);
+  match tx.try_send(value) {
+    Ok(()) => return,
+    Err(TrySendError::Full(value)) => {
+      let _ = rx_for_drop.try_recv();
+      let _ = tx.try_send(value);
+    }
+    Err(TrySendError::Disconnected(_)) => {}
+  }
 }
 
 fn packetize_frame(frame_id: u32, frame: &EncodedFrame, max_chunk_payload: usize) -> Vec<Vec<u8>> {
