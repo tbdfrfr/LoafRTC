@@ -40,12 +40,12 @@ jobs:
         run: bash ./scripts/build-native.sh
 
       - name: Build input bridge
-          working-directory: loafhost/input-bridge
+        working-directory: loafhost/input-bridge
         run: |
           go mod download
           $env:GOOS = 'windows'
           $env:GOARCH = 'amd64'
-            go build -o ../resources/input-bridge.exe .
+          go build -o ../resources/input-bridge.exe .
 
       - name: Package NSIS installer
         working-directory: loafhost
